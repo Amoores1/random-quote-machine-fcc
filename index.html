@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang=“en”>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script>
+src="jquery-3.5.1.min.js"
+//Quotes
+const quoteList = [
+  {quote: "'To light a candle is to cast a shadow.'", 
+  author: "Ursula Le Guin"},
+  {quote: "'And I urge you to please notice when you are happy, and exclaim or murmur or think at some point, If this isn't nice, I don't know what is.'",
+  author: "Kurt Vonnegut"},
+  {quote: "'He stood at the window of the empty cafe and watched the activites in the square and he said that it was good that God kept the truths of life from the young as they were starting out or else they'd have no heart to start at all.'",
+  author: "Cormac McCarthy"},
+  {quote: "'Not everything that is faced can be changed, but nothing can be changed until it is faced.'",
+  author: "James Baldwin"},
+  {quote: "'A rat in a maze is free to go anywhere, as long as it stays inside the maze.'",
+  author: "Margaret Atwood"}];
+
+window.onload = defaultLaunch;
+function defaultLaunch() {
+  generateQuote();}
+
+function generateQuote(){
+let randomIndex = Math.floor(Math.random() * quoteList.length);
+let randomQuote = quoteList[randomIndex];
+let twitterLink = "https://twitter.com/intent/tweet?hashtags=FromMyQuoteMachine&related=freecodecamp&text="
+let quoteInTwitterFormat = randomQuote.quote.replace(/" "/g, "&20");
+twitterLink += quoteInTwitterFormat;
+let authorInTwitterFormat = randomQuote.author.replace(/" "/g, "&20");
+twitterLink += " - " +  authorInTwitterFormat;
+  
+document.getElementById("tweet-quote").href=twitterLink
+document.getElementById("text").innerText = randomQuote.quote;
+document.getElementById("author").innerText = randomQuote.author;
+};
+
+</script>
+<title>Random Author Quote Machine</title>
+</head>
+<body>
+
+<style>.middle-me{
+  margin-top: 25vh;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  border: 4px solid black;
+  border-radius: 5px;}
+
+/*.push-left{
+  margin-left: 350px;
+}*/
+.author-font{
+  font-size: 1.2rem;
+}
+
+.fade-in-first{
+  animation:  fadeIn 3s;
+  animation-fill-mode: forwards;
+}
+.fade-in-second{
+  animation: fadeIn 3s;
+}
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+
+</style>
+
+
+<div id="quote-box">
+  <div class="container">
+    <div class="row middle-me">
+  <p id="text" class="fade-in-first row-sm pt-3 pl-3 pr-3 author-font"></p>
+  <div class="container">
+  <p id="author"class="fade-in-second col-sm pl-3 pr-3 push-left"></p>  
+  <div class="row">
+  <button id="new-quote" onClick="generateQuote();" class=" btn btn-success col-sm p-1">New Quote</button>
+  <a class="btn btn-primary col-sm d-flex justify-content-center" id="tweet-quote" target="_blank">
+Tweet</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"
+></script>
+</body>
+</html>
